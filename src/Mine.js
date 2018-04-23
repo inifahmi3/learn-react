@@ -1,47 +1,29 @@
 import React from 'react';
-import Child from './Child';
+import Nav from './Elements/Nav';
 class Mine extends React.Component {
-    constructor(){
-        super()
-        this.state = {texts: [], color: '', counter: 0}
-        this.changeColor = this.changeColor.bind(this)
-        this.counterClick = this.counterClick.bind(this)
-    }
-
-    componentDidMount() {
-        this.setState({texts: ['react','angular','jquery'], color: 'green'})
-    }
-
-    changeColor(){
-        if(this.state.color === 'green') {
-            this.setState({color: 'blue'})
-        } else {
-            this.setState({color: 'green'})
-        }
-    }
-
-    counterClick(){
-        this.setState({counter: this.state.counter + 1})
-    }
-
     render() {
-
-        let texts = this.state.texts.map((text) => {
-            return (
-                <Child text = {text} counterClick = {this.counterClick} />
-            )
-        })
-
-        let style = {color: this.state.color}
-
         return (
-            <div style={style} onClick={this.changeColor}>
-                free
-                {texts}
-                {this.state.counter}
+            <div>
+                <Nav />
+                <header className="bg-light" style={styles.header}>
+                    <h1 style={styles.bold}>TETEW</h1>
+                </header>
             </div>
         );
     }
 }
+
+const styles = {
+    header: {
+        height: 500,
+        fontFamily: 'Lato',
+        textAlign: 'Center',
+        paddingTop: 40,
+        paddingBottom: 40
+    },
+    bold : {
+        fontWeight: 700
+    }
+};
 
 export default Mine
