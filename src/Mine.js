@@ -9,7 +9,7 @@ class Mine extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({texts: ['a','b','c'], color: 'green'})
+        this.setState({texts: ['react','angular','jquery'], color: 'green'})
     }
 
     changeColor(){
@@ -36,7 +36,7 @@ class Mine extends React.Component {
 
         return (
             <div style={style} onClick={this.changeColor}>
-                wakwaw
+                free
                 {texts}
                 {this.state.counter}
             </div>
