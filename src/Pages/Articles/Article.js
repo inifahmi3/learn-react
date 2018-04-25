@@ -21,7 +21,7 @@ class Article extends React.Component {
                                         <div className="col-lg-3 col-md-4 col-sm-6" key={p.id}>
                                             <div className="card">
                                                 <div className="date"><Time value={p.date} format="DD"/><br/><Time value={p.date} format="MMMM"/></div>
-                                                <Link className="title" to={`/Article/${p.id}`}>{p.title+' '+p.id}</Link>
+                                                <Link className="title" to={`/Detail/${p.id}`}>{p.title+' '+p.id}</Link>
                                             </div>
                                         </div>
                                     ))

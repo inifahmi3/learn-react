@@ -1,12 +1,12 @@
 import React from "react";
-import Time from 'react-time';
+// import Time from 'react-time';
 import { Link } from 'react-router-dom';
 import ArticleAPI from '../../Api';
-import Nav from '../../Elements/Nav';
-import Footer from '../../Elements/Footer';
+// import Nav from '../../Elements/Nav';
+// import Footer from '../../Elements/Footer';
 
 const DetailArticle = props => {
-  const article = ArticleAPI.get(parseInt(props.match.params.number, 10));
+  const article = ArticleAPI.get(parseInt(props.match.params.id, 10));
   if (!article) {
     return <div>Sorry, but the article was not found</div>;
   }
@@ -15,8 +15,7 @@ const DetailArticle = props => {
       <h1>
         {article.title} (#{article.id})
       </h1>
-      <h2>Position: {article.date}</h2>
-      <Link to="/roster">Back</Link>
+      <h2>Date: {article.date}</h2>
     </div>
   );
 };
