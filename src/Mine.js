@@ -1,4 +1,7 @@
 import React from 'react';
+import Time from 'react-time';
+import { Link } from 'react-router-dom';
+import ArticleAPI from './Api';
 import Nav from './Elements/Nav';
 import Footer from './Elements/Footer';
 class Mine extends React.Component {
@@ -12,10 +15,10 @@ class Mine extends React.Component {
         return (
             <div>
                 <Nav />
-                <header style={styles.header}>
-                    <h1 style={styles.textHeader}>HEADER</h1>
+                <header>
+                    <h1>HOME</h1>
                 </header>
-                <div style={styles.subHeader}>
+                <div className="subHeader">
                     <div className="container">
                         <div className="row">
                             <div className="col-4 text-center">
@@ -34,49 +37,17 @@ class Mine extends React.Component {
                     </div>
                 </div>
                 <div className="container pt-4 pb-4">
-                    <div className="row" style={styles.mainContent}>
-                        <div className="col-lg-6 col-md-4 col-sm-6">
-                            <div style={styles.mainContent.card}>
-                                <div style={styles.mainContent.card.date}>28 MAY</div>
-                                <div style={styles.mainContent.card.title}>Title Content</div>
-                            </div>
-                        </div>
-                        <div className="col-lg-3 col-md-4 col-sm-6">
-                            <div style={styles.mainContent.card}>
-                                <div style={styles.mainContent.card.date}>28 MAY</div>
-                                <div style={styles.mainContent.card.title}>Title Content</div>
-                            </div>
-                        </div>
-                        <div className="col-lg-3 col-md-4 col-sm-6">
-                            <div style={styles.mainContent.card}>
-                                <div style={styles.mainContent.card.date}>28 MAY</div>
-                                <div style={styles.mainContent.card.title}>Title Content</div>
-                            </div>
-                        </div>
-                        <div className="col-lg-3 col-md-4 col-sm-6">
-                            <div style={styles.mainContent.card}>
-                                <div style={styles.mainContent.card.date}>28 MAY</div>
-                                <div style={styles.mainContent.card.title}>Title Content</div>
-                            </div>
-                        </div>
-                        <div className="col-lg-3 col-md-4 col-sm-6">
-                            <div style={styles.mainContent.card}>
-                                <div style={styles.mainContent.card.date}>28 MAY</div>
-                                <div style={styles.mainContent.card.title}>Title Content</div>
-                            </div>
-                        </div>
-                        <div className="col-lg-3 col-md-4 col-sm-6">
-                            <div style={styles.mainContent.card}>
-                                <div style={styles.mainContent.card.date}>28 MAY</div>
-                                <div style={styles.mainContent.card.title}>Title Content</div>
-                            </div>
-                        </div>
-                        <div className="col-lg-3 col-md-4 col-sm-6">
-                            <div style={styles.mainContent.card}>
-                                <div style={styles.mainContent.card.date}>28 MAY</div>
-                                <div style={styles.mainContent.card.title}>Title Content</div>
-                            </div>
-                        </div>
+                    <div className="row mainContent">
+                        {
+                            ArticleAPI.all().map(p =>(
+                                <div className="col-lg-3 col-md-4 col-sm-6" key={p.id}>
+                                    <div className="card">
+                                        <div className="date"><Time value={p.date} format="DD"/><br/><Time value={p.date} format="MMMM"/></div>
+                                        <Link className="title" to={`/Detail/${p.id}`}>{p.title+' '+p.id}</Link>
+                                    </div>
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
                 <Footer />
@@ -84,54 +55,5 @@ class Mine extends React.Component {
         );
     }
 }
-
-const styles = {
-    header : {
-        height: 500,
-        fontFamily: 'Lato',
-        textAlign: 'Center',
-        backgroundColor: '#4b7bec',
-        paddingTop: 40,
-        paddingBottom: 40,
-        marginTop: 56
-    },
-    textHeader : {
-        fontWeight: 700,
-        lineHeight: 10,
-        color: 'white'
-    },
-    subHeader : {
-        paddingTop: 30,
-        backgroundColor: '#45aaf2',
-        minHeight: 180
-    },
-    mainContent : {
-        card : {
-            position: 'relative',
-            height: 250,
-            backgroundColor: '#20bf6b',
-            borderRadius: 8,
-            paddingTop: 10,
-            paddingLeft: 10,
-            marginBottom: 30,
-            date : {
-                display: 'inline-block',
-                fontSize: 26,
-                color: 'white',
-                fontFamily: 'Lato',
-                width: 80,
-                lineHeight: 1.2
-            },
-            title : {
-                position: 'absolute',
-                bottom: 5,
-                right: 10,
-                fontFamily: 'Lato',
-                fontWeight: 'bold',
-                color: '#fff'
-            }
-        }
-    }
-};
 
 export default Mine
