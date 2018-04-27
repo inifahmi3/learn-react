@@ -1,12 +1,9 @@
 import React from "react";
-import Nav from '../Elements/Nav';
-import Footer from '../Elements/Footer';
 
 class About extends React.Component {
     render() {
         return (
             <div>
-                <Nav />
                 <header>
                     <h1>Contact</h1>
                 </header>
@@ -19,7 +16,6 @@ class About extends React.Component {
                         </div>
                     </div>
                 </section>
-                <Footer />
             </div>
         )
     }

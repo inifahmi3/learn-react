@@ -5,7 +5,7 @@ import Article from './Pages/Articles/Article';
 import DetailArticle from './Pages/Articles/DetailArticle';
 import About from './Pages/About';
 import Contact from './Pages/Contact';
-import Blank from './Pages/Blank';
+// import Blank from './Pages/Blank';
 
 const Router = () => (
     <Switch>

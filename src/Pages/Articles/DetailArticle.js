@@ -1,6 +1,6 @@
 import React from "react";
 // import Time from 'react-time';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import ArticleAPI from '../../Api';
 // import Nav from '../../Elements/Nav';
 // import Footer from '../../Elements/Footer';
@@ -12,10 +12,23 @@ const DetailArticle = props => {
   }
   return (
     <div>
+      <header>
+        <h1>{article.title}(#{article.id})</h1>
+      </header>
+      <section>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 mt-4">
+              <p>
+              {article.description}
+              </p>
+              <h2>Date: {article.date}</h2>
+            </div>
+          </div>
+        </div>
+      </section>
       <h1>
-        {article.title} (#{article.id})
       </h1>
-      <h2>Date: {article.date}</h2>
     </div>
   );
 };

@@ -1,20 +1,46 @@
 import React from 'react';
 import Time from 'react-time';
 import { Link } from 'react-router-dom';
-import ArticleAPI from './Api';
-import Nav from './Elements/Nav';
-import Footer from './Elements/Footer';
+// import ArticleAPI from './Api';
 class Mine extends React.Component {
 
+    constructor() {
+        super()
+        this.state = {datas : [], img : []}
+    }
+    
     componentDidMount() {
-        // var url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=d42fdc08586b46088ce1ce85979d08de"
+        var url = "https://randomuser.me/api/?results=20&gender=male"
         // console.log(url)
+        return fetch(url)
+        .then((response) => response.json())
+        .then((responseJson) => {
+            let people = responseJson.results;
+            let images = people.pictures;
+            this.setState( {datas : people, img: images} );
+            console.log(this.state.images)
+        })
+        .catch((error) => {
+        console.error(error);
+        });
+
     }
 
     render() {
+
+        let dataSources = this.state.datas.map(function(data){
+            return (
+                <div className="col-lg-3 col-md-4 col-sm-6" key={data.login.salt}>
+                    <div className="card" style={{backgroundImage: `url(${data.picture.large})`}}>
+                        <div className="date"><Time value={data.dob} format="DD"/><br/><Time value={data.dob} format="MMM"/></div>
+                        <Link className="title" to="">{data.name.first} {data.name.last}</Link>
+                    </div>
+                </div>
+            )
+        }) 
+
         return (
             <div>
-                <Nav />
                 <header>
                     <h1>HOME</h1>
                 </header>
@@ -38,19 +64,9 @@ class Mine extends React.Component {
                 </div>
                 <div className="container pt-4 pb-4">
                     <div className="row mainContent">
-                        {
-                            ArticleAPI.all().map(p =>(
-                                <div className="col-lg-3 col-md-4 col-sm-6" key={p.id}>
-                                    <div className="card">
-                                        <div className="date"><Time value={p.date} format="DD"/><br/><Time value={p.date} format="MMMM"/></div>
-                                        <Link className="title" to={`/Detail/${p.id}`}>{p.title+' '+p.id}</Link>
-                                    </div>
-                                </div>
-                            ))
-                        }
+                        {dataSources}
                     </div>
                 </div>
-                <Footer />
             </div>
         );
     }
